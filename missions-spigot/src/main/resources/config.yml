@@ -1,0 +1,5 @@
+missions:
+  1:
+    type: BREAK_BLOCKS
+    objective: 100
+    command: "give {player} stone 1"

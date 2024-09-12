@@ -1,0 +1,30 @@
+icons:
+  not-unlocked-icon:
+    displayName: "&cMissão {mission_id}"
+    lore:
+      - "&7Você deve &f{mission_type} &7para completar"
+      - "&7esta missão!"
+      - ""
+      - "&f Objetivo: &7{mission_objective}"
+      - ""
+      - "&cComplete a missão anterior!"
+  not-completed-icon:
+    displayName: "&cMissão {mission_id}"
+    lore:
+      - "&7Você deve &f{mission_type} &7para completar"
+      - "&7esta missão!"
+      - ""
+      - "&c Progresso:"
+      - " {progress_bar} &7[{progress}/{objective}]"
+      - ""
+      - "&cRequisitos insuficientes!"
+  completed-icon:
+    displayName: "&aMissão {mission_id}"
+    lore:
+      - "&7Você deve &f{mission_type} &7para completar"
+      - "&7esta missão!"
+      - ""
+      - "&a Progresso:"
+      - " {progress_bar} &7[{progress}/{objective}]"
+      - ""
+      - "&aClique para completar!"

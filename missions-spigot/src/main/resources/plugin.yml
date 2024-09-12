@@ -1,0 +1,4 @@
+name: missions
+version: 1.0.0
+author: alwaysdarkk
+main: com.github.alwaysdarkk.missions.MissionsPlugin
