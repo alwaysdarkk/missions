@@ -2,4 +2,22 @@ missions:
   1:
     type: BREAK_BLOCKS
     objective: 100
-    command: "give {player} stone 1"
+    rewards:
+      test:
+        command: "give {player} stone 1" # Deixe em branco para givar o item.
+        item-stack:
+          material: "1:0" # Coloque o url de uma head para usá-la.
+          amount: 1
+          display-name: "&7Pedra :D"
+          lore:
+            - "&7Uma pedra muito legal cara"
+      test2:
+        command: "give {player} grass 1"
+        item-stack:
+          material: "2:0"
+          amount: 1
+          display-name: "&2Grama :D"
+          lore:
+            - "&7Uma grama muito legal cara"
+          enchantments:
+            - "DAMAGE_ALL:1"

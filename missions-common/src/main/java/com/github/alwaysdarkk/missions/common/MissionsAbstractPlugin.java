@@ -12,5 +12,4 @@ public class MissionsAbstractPlugin extends JavaPlugin {
     public static MissionsAbstractPlugin getInstance() {
         return getPlugin(MissionsAbstractPlugin.class);
     }
-
 }
