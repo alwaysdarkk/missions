@@ -1,4 +1,4 @@
-package com.github.alwaysdarkk.missions.common.repository.parser;
+package com.github.alwaysdarkk.missions.common.mongodb.parser;
 
 import org.bson.BsonDocument;
 import org.jetbrains.annotations.Nullable;

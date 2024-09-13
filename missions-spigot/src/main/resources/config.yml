@@ -1,12 +1,18 @@
+# Para ter mais informações sobre o "connection-url", acesse:
+# https://www.mongodb.com/pt-br/docs/manual/reference/connection-string/
+
+database:
+  connection-url: "mongodb://username:password@host:port"
+
 missions:
   1:
-    type: BREAK_BLOCKS
+    type: BREAK_BLOCKS # BREAk_BLOCKS, PLACE_BLOCKS, KILL_MOBS e KILL_PLAYERS
     objective: 100
     rewards:
       test:
         command: "give {player} stone 1" # Deixe em branco para givar o item.
         item-stack:
-          material: "1:0" # Coloque o url de uma head para usá-la.
+          material: "1:0" # Coloque o url de uma head caso queira usar.
           amount: 1
           display-name: "&7Pedra :D"
           lore:

@@ -22,6 +22,9 @@ public class ConfigValue implements ConfigurationInjectable {
     @Getter
     private static final ConfigValue instance = new ConfigValue();
 
+    @ConfigField("database.connection-url")
+    private String connectionUrl;
+
     @ConfigField("missions")
     private ConfigurationSection missionsSection;
 

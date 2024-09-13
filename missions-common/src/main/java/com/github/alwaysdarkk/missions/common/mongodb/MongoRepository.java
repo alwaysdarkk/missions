@@ -1,6 +1,7 @@
-package com.github.alwaysdarkk.missions.common.repository;
+package com.github.alwaysdarkk.missions.common.mongodb;
 
-import com.github.alwaysdarkk.missions.common.repository.parser.MongoDocumentParser;
+import com.github.alwaysdarkk.missions.common.configuration.ConfigValue;
+import com.github.alwaysdarkk.missions.common.mongodb.parser.MongoDocumentParser;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
@@ -28,7 +29,9 @@ public abstract class MongoRepository<V> {
     }
 
     protected void connection() {
-        final ConnectionString connectionString = new ConnectionString("");
+        final String connectionUrl = ConfigValue.get(ConfigValue::connectionUrl);
+
+        final ConnectionString connectionString = new ConnectionString(connectionUrl);
         final MongoClientSettings clientSettings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
                 .uuidRepresentation(UuidRepresentation.STANDARD)

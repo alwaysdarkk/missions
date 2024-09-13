@@ -52,7 +52,7 @@ public class ItemStackAdapter {
         return itemBuilder.build();
     }
 
-    private ItemStack adaptItemStack(String path) {
+    public ItemStack adaptItemStack(String path) {
         if (!path.contains(":")) {
             return SkullUtil.getSkullByUrl(path);
         }
