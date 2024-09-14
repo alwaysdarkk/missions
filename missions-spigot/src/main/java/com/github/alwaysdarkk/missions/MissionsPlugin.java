@@ -4,6 +4,9 @@ import com.github.alwaysdarkk.missions.common.registry.ConfigurationRegistry;
 import com.github.alwaysdarkk.missions.common.registry.MissionRegistry;
 import com.github.alwaysdarkk.missions.common.registry.MissionUserRegistry;
 import com.github.alwaysdarkk.missions.common.repository.MissionUserRepository;
+import com.github.alwaysdarkk.missions.listener.BlockBreakListener;
+import com.github.alwaysdarkk.missions.listener.BlockPlaceListener;
+import com.github.alwaysdarkk.missions.listener.EntityDeathListener;
 import com.github.alwaysdarkk.missions.listener.UserConnectionListener;
 import com.github.alwaysdarkk.missions.runnable.MissionUserSaveRunnable;
 import org.bukkit.Bukkit;
@@ -30,6 +33,9 @@ public class MissionsPlugin extends JavaPlugin {
 
         final PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new UserConnectionListener(userRepository, userRegistry), this);
+        pluginManager.registerEvents(new BlockBreakListener(userRegistry, missionRegistry), this);
+        pluginManager.registerEvents(new BlockPlaceListener(userRegistry, missionRegistry), this);
+        pluginManager.registerEvents(new EntityDeathListener(userRegistry, missionRegistry), this);
 
         new MissionUserSaveRunnable(userRegistry, userRepository);
     }

@@ -1,5 +1,15 @@
+settings:
+  name: "Missões"
+  size: 5
+  layout:
+    - "XXXXXXXXX"
+    - "XXOOOOOXX"
+    - "<XOOOOOX>"
+    - "XXOOOOOXX"
+    - "XXXXXXXXX"
+
 icons:
-  not-unlocked-icon:
+  not-unlock-icon:
     displayName: "&cMissão {mission_id}"
     lore:
       - "&7Você deve &f{mission_type} &7para completar"
@@ -8,23 +18,44 @@ icons:
       - "&f Objetivo: &7{mission_objective}"
       - ""
       - "&cComplete a missão anterior!"
-  not-completed-icon:
+  not-complete-icon:
     displayName: "&cMissão {mission_id}"
     lore:
       - "&7Você deve &f{mission_type} &7para completar"
       - "&7esta missão!"
       - ""
       - "&c Progresso:"
-      - " {progress_bar} &7[{progress}/{objective}]"
+      - " {progress_bar} &7[{mission_progress}/{mission_objective}]"
       - ""
       - "&cRequisitos insuficientes!"
-  completed-icon:
+  already-complete-icon:
+    displayName: "&cMissão {mission_id}"
+    lore:
+      - "&7Você deve &f{mission_type} &7para completar"
+      - "&7esta missão!"
+      - ""
+      - "&f Objetivo: &7{mission_objective}"
+      - ""
+      - "&cEsta missão já foi completada!"
+  complete-icon:
     displayName: "&aMissão {mission_id}"
     lore:
       - "&7Você deve &f{mission_type} &7para completar"
       - "&7esta missão!"
       - ""
       - "&a Progresso:"
-      - " {progress_bar} &7[{progress}/{objective}]"
+      - " {progress_bar} &7[{mission_progress}/{mission_objective}]"
       - ""
       - "&aClique para completar!"
+  previous-page-icon:
+    material: "262:0"
+    displayName: "&aPágina anterior"
+    lore:
+      - "&7Clique para voltar a"
+      - "&7página anterior."
+  next-page-icon:
+    material: "262:0"
+    displayName: "&aPróxima página"
+    lore:
+      - "&7Clique para ir a próxima"
+      - "&7página."

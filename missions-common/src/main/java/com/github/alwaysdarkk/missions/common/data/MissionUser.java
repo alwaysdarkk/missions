@@ -19,17 +19,20 @@ public class MissionUser {
     private double progress = 0.0;
 
     @Builder.Default
-    private List<Integer> completedMissions = new ArrayList<>();
+    private List<Integer> completeMissions = new ArrayList<>();
 
     @Builder.Default
     private boolean dirty = true;
 
-    public void addProgress(double amount) {
-        progress += amount;
+    public void incrementProgress() {
+        progress += 1;
     }
 
-    public boolean hasFinished(Mission mission) {
-        final double objective = mission.getObjective();
-        return progress >= objective;
+    public void addCompleteMission(Mission mission) {
+        completeMissions.add(mission.getId());
+    }
+
+    public boolean hasCompleteMission(Mission mission) {
+        return completeMissions.contains(mission.getId());
     }
 }

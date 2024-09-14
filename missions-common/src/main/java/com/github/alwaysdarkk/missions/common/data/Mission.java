@@ -3,6 +3,7 @@ package com.github.alwaysdarkk.missions.common.data;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
 public class Mission {
 
     private final int id;
+    private final ItemStack itemStack;
     private final MissionType type;
     private final double objective;
     private final List<MissionReward> rewards;

@@ -4,6 +4,7 @@ import com.github.alwaysdarkk.missions.common.adapter.MissionAdapter;
 import com.github.alwaysdarkk.missions.common.data.Mission;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class MissionRegistry {
 
@@ -12,9 +13,7 @@ public class MissionRegistry {
     public MissionRegistry() {
         this.missionMap = new HashMap<>();
 
-        new MissionAdapter().getMissions().stream()
-                .filter(Objects::nonNull)
-                .forEach(this::insert);
+        new MissionAdapter().getMissions().stream().filter(Objects::nonNull).forEach(this::insert);
     }
 
     public void insert(Mission mission) {
@@ -25,7 +24,17 @@ public class MissionRegistry {
         return missionMap.get(missionId);
     }
 
+    public Mission findNext(Mission mission) {
+        return missionMap.get(mission.getId() + 1);
+    }
+
+    public Mission findPrevious(Mission mission) {
+        return missionMap.get(mission.getId() - 1);
+    }
+
     public List<Mission> findAll() {
-        return new ArrayList<>(missionMap.values());
+        return missionMap.values().stream()
+                .sorted(Comparator.comparingInt(Mission::getId))
+                .collect(Collectors.toList());
     }
 }

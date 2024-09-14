@@ -18,7 +18,7 @@ public class MissionUserParser extends MongoDocumentParser<MissionUser> {
         document.append("progress", new BsonDouble(missionUser.getProgress()));
 
         final BsonArray missionsArray = new BsonArray();
-        missionUser.getCompletedMissions().forEach(missionId -> missionsArray.add(new BsonInt32(missionId)));
+        missionUser.getCompleteMissions().forEach(missionId -> missionsArray.add(new BsonInt32(missionId)));
 
         document.append("completedMissions", missionsArray);
 
@@ -35,13 +35,14 @@ public class MissionUserParser extends MongoDocumentParser<MissionUser> {
         final List<Integer> completedMissions = new ArrayList<>();
 
         final BsonArray missionsArray = document.getArray("completedMissions").asArray();
-        missionsArray.forEach(missionId -> completedMissions.add(missionId.asInt32().getValue()));
+        missionsArray.forEach(
+                missionId -> completedMissions.add(missionId.asInt32().getValue()));
 
         return MissionUser.builder()
                 .playerName(playerName)
                 .currentMission(currentMission)
                 .progress(progress)
-                .completedMissions(completedMissions)
+                .completeMissions(completedMissions)
                 .dirty(false)
                 .build();
     }

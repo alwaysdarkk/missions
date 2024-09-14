@@ -4,7 +4,9 @@ import com.github.alwaysdarkk.missions.common.configuration.ConfigValue;
 import com.github.alwaysdarkk.missions.common.data.Mission;
 import com.github.alwaysdarkk.missions.common.data.MissionReward;
 import com.github.alwaysdarkk.missions.common.data.MissionType;
+import com.github.alwaysdarkk.missions.common.item.adapter.ItemStackAdapter;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 import java.util.Objects;
@@ -28,12 +30,14 @@ public class MissionAdapter {
     private Mission adaptMission(ConfigurationSection section) {
         final int id = Integer.parseInt(section.getName());
 
+        final ItemStack itemStack = ItemStackAdapter.adaptItemStack(section.getString("icon"));
+
         final MissionType type = MissionType.valueOf(section.getString("type"));
         final double objective = section.getDouble("objective");
 
         final ConfigurationSection rewardsSection = section.getConfigurationSection("rewards");
         final List<MissionReward> rewards = new MissionRewardAdapter(rewardsSection).getRewards();
 
-        return new Mission(id, type, objective, rewards);
+        return new Mission(id, itemStack, type, objective, rewards);
     }
 }

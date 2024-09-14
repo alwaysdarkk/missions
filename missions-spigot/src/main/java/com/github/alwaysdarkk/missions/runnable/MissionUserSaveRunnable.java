@@ -17,12 +17,7 @@ public class MissionUserSaveRunnable implements Runnable {
         this.userRegistry = userRegistry;
         this.userRepository = userRepository;
 
-        Bukkit.getScheduler().runTaskTimerAsynchronously(
-                MissionsPlugin.getInstance(),
-                this,
-                40L,
-                40L
-        );
+        Bukkit.getScheduler().runTaskTimerAsynchronously(MissionsPlugin.getInstance(), this, 40L, 40L);
     }
 
     @Override

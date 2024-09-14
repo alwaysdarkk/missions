@@ -6,6 +6,7 @@ database:
 
 missions:
   1:
+    icon: "1:0"
     type: BREAK_BLOCKS # BREAk_BLOCKS, PLACE_BLOCKS, KILL_MOBS e KILL_PLAYERS
     objective: 100
     rewards:
@@ -13,6 +14,75 @@ missions:
         command: "give {player} stone 1" # Deixe em branco para givar o item.
         item-stack:
           material: "1:0" # Coloque o url de uma head caso queira usar.
+          amount: 1
+          display-name: "&7Pedra :D"
+          lore:
+            - "&7Uma pedra muito legal cara"
+      test2:
+        command: "give {player} grass 1"
+        item-stack:
+          material: "2:0"
+          amount: 1
+          display-name: "&2Grama :D"
+          lore:
+            - "&7Uma grama muito legal cara"
+          enchantments:
+            - "DAMAGE_ALL:1"
+  2:
+    icon: "2:0"
+    type: PLACE_BLOCKS
+    objective: 200
+    rewards:
+      test:
+        command: "give {player} stone 1"
+        item-stack:
+          material: "1:0"
+          amount: 1
+          display-name: "&7Pedra :D"
+          lore:
+            - "&7Uma pedra muito legal cara"
+      test2:
+        command: "give {player} grass 1"
+        item-stack:
+          material: "2:0"
+          amount: 1
+          display-name: "&2Grama :D"
+          lore:
+            - "&7Uma grama muito legal cara"
+          enchantments:
+            - "DAMAGE_ALL:1"
+  3:
+    icon: "3:0"
+    type: KILL_MOBS
+    objective: 300
+    rewards:
+      test:
+        command: "give {player} stone 1"
+        item-stack:
+          material: "1:0"
+          amount: 1
+          display-name: "&7Pedra :D"
+          lore:
+            - "&7Uma pedra muito legal cara"
+      test2:
+        command: "give {player} grass 1"
+        item-stack:
+          material: "2:0"
+          amount: 1
+          display-name: "&2Grama :D"
+          lore:
+            - "&7Uma grama muito legal cara"
+          enchantments:
+            - "DAMAGE_ALL:1"
+  4:
+    icon: "4:0"
+    type: KILL_PLAYERS
+    objective: 400
+    rewards:
+      test:
+        command: "give {player} stone 1"
+        item-stack:
+          material: "1:0"
           amount: 1
           display-name: "&7Pedra :D"
           lore:

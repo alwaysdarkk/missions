@@ -24,8 +24,7 @@ public class MissionUserRepository extends MongoRepository<MissionUser> {
                         .name("playerName")
                         .unique(true)
                         .background(true)
-                        .sparse(true)
-        );
+                        .sparse(true));
     }
 
     public void insert(MissionUser user) {
@@ -42,7 +41,8 @@ public class MissionUserRepository extends MongoRepository<MissionUser> {
     }
 
     public MissionUser find(String playerName) {
-        final BsonDocument document = collection.find(eq("playerName", playerName)).first();
+        final BsonDocument document =
+                collection.find(eq("playerName", playerName)).first();
         if (document == null) {
             return null;
         }
