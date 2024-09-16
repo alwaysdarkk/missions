@@ -8,6 +8,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.List;
 import java.util.function.Function;
@@ -21,15 +22,6 @@ public class InventoryValue implements ConfigurationInjectable {
 
     @Getter
     private static final InventoryValue instance = new InventoryValue();
-
-    @ConfigField("settings.name")
-    private String name;
-
-    @ConfigField("settings.size")
-    private int size;
-
-    @ConfigField("settings.layout")
-    private List<String> layout;
 
     @ConfigField("icons.not-unlock-icon.displayName")
     private String notUnlockName;
@@ -54,6 +46,12 @@ public class InventoryValue implements ConfigurationInjectable {
 
     @ConfigField("icons.complete-icon.lore")
     private List<String> completeLore;
+
+    @ConfigField("icons.next-page-icon")
+    private ConfigurationSection nextPageSection;
+
+    @ConfigField("icons.previous-page-icon")
+    private ConfigurationSection previousPageSection;
 
     public static <T> T get(Function<InventoryValue, T> function) {
         return function.apply(instance);

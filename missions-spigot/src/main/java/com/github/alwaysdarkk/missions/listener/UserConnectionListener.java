@@ -1,7 +1,7 @@
 package com.github.alwaysdarkk.missions.listener;
 
+import com.github.alwaysdarkk.missions.common.cache.MissionUserCache;
 import com.github.alwaysdarkk.missions.common.data.MissionUser;
-import com.github.alwaysdarkk.missions.common.registry.MissionUserRegistry;
 import com.github.alwaysdarkk.missions.common.repository.MissionUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class UserConnectionListener implements Listener {
 
     private final MissionUserRepository userRepository;
-    private final MissionUserRegistry userRegistry;
+    private final MissionUserCache userCache;
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
@@ -24,13 +24,13 @@ public class UserConnectionListener implements Listener {
         final MissionUser user = Optional.ofNullable(userRepository.find(player.getName()))
                 .orElse(MissionUser.builder().playerName(player.getName()).build());
 
-        userRegistry.insert(user);
+        userCache.insert(user);
     }
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
         final Player player = event.getPlayer();
-        final MissionUser user = userRegistry.find(player.getName());
+        final MissionUser user = userCache.find(player.getName());
 
         if (user == null) {
             return;
@@ -40,7 +40,7 @@ public class UserConnectionListener implements Listener {
             return;
         }
 
-        userRegistry.remove(user);
+        userCache.remove(user);
         userRepository.insert(user);
     }
 }

@@ -1,2 +1,5 @@
 messages:
-  completed-mission: "&e&lEBA! &eVocê completou a missão &f#{mission_id}&e."
+  complete-mission: "&e&lEBA! &eVocê completou a missão &f#{mission_id}&e."
+  already-complete-mission: "&cVocê já completou esta missão."
+  not-unlock-mission: "&cVocê precisa concluir a missão anterior para fazer esta."
+  cant-complete-mission: "&cVocê não possui os requisitos para concluir esta missão."

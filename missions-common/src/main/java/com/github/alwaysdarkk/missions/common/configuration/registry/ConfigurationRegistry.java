@@ -1,4 +1,4 @@
-package com.github.alwaysdarkk.missions.common.registry;
+package com.github.alwaysdarkk.missions.common.configuration.registry;
 
 import com.github.alwaysdarkk.missions.common.configuration.ConfigValue;
 import com.github.alwaysdarkk.missions.common.configuration.InventoryValue;

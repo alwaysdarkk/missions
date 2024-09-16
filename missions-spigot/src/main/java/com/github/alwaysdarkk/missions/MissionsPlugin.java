@@ -1,19 +1,25 @@
 package com.github.alwaysdarkk.missions;
 
-import com.github.alwaysdarkk.missions.common.registry.ConfigurationRegistry;
-import com.github.alwaysdarkk.missions.common.registry.MissionRegistry;
-import com.github.alwaysdarkk.missions.common.registry.MissionUserRegistry;
+import com.github.alwaysdarkk.missions.command.registry.CommandRegistry;
+import com.github.alwaysdarkk.missions.common.cache.MissionCache;
+import com.github.alwaysdarkk.missions.common.cache.MissionUserCache;
+import com.github.alwaysdarkk.missions.common.configuration.registry.ConfigurationRegistry;
 import com.github.alwaysdarkk.missions.common.repository.MissionUserRepository;
-import com.github.alwaysdarkk.missions.listener.BlockBreakListener;
-import com.github.alwaysdarkk.missions.listener.BlockPlaceListener;
-import com.github.alwaysdarkk.missions.listener.EntityDeathListener;
-import com.github.alwaysdarkk.missions.listener.UserConnectionListener;
+import com.github.alwaysdarkk.missions.listener.registry.ListenerRegistry;
 import com.github.alwaysdarkk.missions.runnable.MissionUserSaveRunnable;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.PluginManager;
+import com.github.alwaysdarkk.missions.view.registry.ViewRegistry;
+import lombok.Getter;
+import me.saiintbrisson.minecraft.ViewFrame;
 import org.bukkit.plugin.java.JavaPlugin;
 
+@Getter
 public class MissionsPlugin extends JavaPlugin {
+
+    private MissionUserRepository userRepository;
+    private MissionUserCache userCache;
+    private MissionCache missionCache;
+
+    private ViewFrame viewFrame;
 
     public static MissionsPlugin getInstance() {
         return getPlugin(MissionsPlugin.class);
@@ -26,17 +32,17 @@ public class MissionsPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        final MissionUserRepository userRepository = new MissionUserRepository();
-        final MissionUserRegistry userRegistry = new MissionUserRegistry();
+        userRepository = new MissionUserRepository();
+        userCache = new MissionUserCache();
 
-        final MissionRegistry missionRegistry = new MissionRegistry();
+        missionCache = new MissionCache();
 
-        final PluginManager pluginManager = Bukkit.getPluginManager();
-        pluginManager.registerEvents(new UserConnectionListener(userRepository, userRegistry), this);
-        pluginManager.registerEvents(new BlockBreakListener(userRegistry, missionRegistry), this);
-        pluginManager.registerEvents(new BlockPlaceListener(userRegistry, missionRegistry), this);
-        pluginManager.registerEvents(new EntityDeathListener(userRegistry, missionRegistry), this);
+        viewFrame = ViewFrame.of(this);
 
-        new MissionUserSaveRunnable(userRegistry, userRepository);
+        ViewRegistry.of(this).setup();
+        ListenerRegistry.of(this).setup();
+        CommandRegistry.of(this).setup();
+
+        new MissionUserSaveRunnable(userCache, userRepository);
     }
 }

@@ -1,4 +1,4 @@
-package com.github.alwaysdarkk.missions.common.registry;
+package com.github.alwaysdarkk.missions.common.cache;
 
 import com.github.alwaysdarkk.missions.common.data.MissionUser;
 
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class MissionUserRegistry {
+public class MissionUserCache {
 
     private final Map<String, MissionUser> userMap = new HashMap<>();
 

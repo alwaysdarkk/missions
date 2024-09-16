@@ -30,7 +30,7 @@ public class MissionUserParser extends MongoDocumentParser<MissionUser> {
         final String playerName = document.getString("playerName").getValue();
 
         final int currentMission = document.getInt32("currentMission").getValue();
-        final double progress = document.getInt64("progress").getValue();
+        final double progress = document.getDouble("progress").getValue();
 
         final List<Integer> completedMissions = new ArrayList<>();
 

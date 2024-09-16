@@ -1,11 +1,10 @@
 package com.github.alwaysdarkk.missions.listener;
 
+import com.github.alwaysdarkk.missions.common.cache.MissionCache;
+import com.github.alwaysdarkk.missions.common.cache.MissionUserCache;
 import com.github.alwaysdarkk.missions.common.data.Mission;
 import com.github.alwaysdarkk.missions.common.data.MissionType;
 import com.github.alwaysdarkk.missions.common.data.MissionUser;
-import com.github.alwaysdarkk.missions.common.registry.MissionRegistry;
-import com.github.alwaysdarkk.missions.common.registry.MissionUserRegistry;
-import com.github.alwaysdarkk.missions.strategy.MissionCompleteStrategy;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -17,20 +16,24 @@ import org.bukkit.event.entity.EntityDeathEvent;
 @RequiredArgsConstructor
 public class EntityDeathListener implements Listener {
 
-    private final MissionUserRegistry userRegistry;
-    private final MissionRegistry missionRegistry;
+    private final MissionUserCache userCache;
+    private final MissionCache missionCache;
 
     @EventHandler
     public void onDeath(EntityDeathEvent event) {
         final LivingEntity entity = event.getEntity();
         final Player killer = entity.getKiller();
 
-        final MissionUser user = userRegistry.find(killer.getName());
+        if (killer == null || killer.getType() != EntityType.PLAYER) {
+            return;
+        }
+
+        final MissionUser user = userCache.find(killer.getName());
         if (user == null) {
             return;
         }
 
-        final Mission mission = missionRegistry.find(user.getCurrentMission());
+        final Mission mission = missionCache.find(user.getCurrentMission());
         if (mission == null) {
             return;
         }
@@ -41,11 +44,6 @@ public class EntityDeathListener implements Listener {
             }
 
             user.incrementProgress();
-
-            if (user.getProgress() >= mission.getObjective()) {
-                new MissionCompleteStrategy(missionRegistry).execute(killer, user, mission);
-            }
-
             user.setDirty(true);
             return;
         }
@@ -55,11 +53,6 @@ public class EntityDeathListener implements Listener {
         }
 
         user.incrementProgress();
-
-        if (user.getProgress() >= mission.getObjective()) {
-            new MissionCompleteStrategy(missionRegistry).execute(killer, user, mission);
-        }
-
         user.setDirty(true);
     }
 }

@@ -21,8 +21,17 @@ public class MessagesValue implements ConfigurationInjectable {
     @Getter
     private static final MessagesValue instance = new MessagesValue();
 
-    @ConfigField("messages.completed-mission")
-    private String completedMission;
+    @ConfigField("messages.complete-mission")
+    private String completeMission;
+
+    @ConfigField("messages.already-complete-mission")
+    private String alreadyCompleteMission;
+
+    @ConfigField("messages.not-unlock-mission")
+    private String notUnlockMission;
+
+    @ConfigField("messages.cant-complete-mission")
+    private String cantCompleteMission;
 
     public static <T> T get(Function<MessagesValue, T> function) {
         return function.apply(instance);

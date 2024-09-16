@@ -1,4 +1,4 @@
-package com.github.alwaysdarkk.missions.common.registry;
+package com.github.alwaysdarkk.missions.common.cache;
 
 import com.github.alwaysdarkk.missions.common.adapter.MissionAdapter;
 import com.github.alwaysdarkk.missions.common.data.Mission;
@@ -6,11 +6,11 @@ import com.github.alwaysdarkk.missions.common.data.Mission;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class MissionRegistry {
+public class MissionCache {
 
     private final Map<Integer, Mission> missionMap;
 
-    public MissionRegistry() {
+    public MissionCache() {
         this.missionMap = new HashMap<>();
 
         new MissionAdapter().getMissions().stream().filter(Objects::nonNull).forEach(this::insert);
